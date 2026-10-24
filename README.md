@@ -26,6 +26,7 @@ précédente en conservant le compte et les réglages.
 Une version est publiée en poussant une branche `publication/vX.Y.Z` contenant `release/masterzone-tv.apk`,
 `release/release.json` et `release/notes.md`. Le workflow « Publier une version » contrôle l’identifiant, le
 numéro de version, l’empreinte et le certificat MasterZone, crée la release, vérifie le lien public sans compte,
-puis supprime la branche : le fichier reste uniquement dans la release.
+puis supprime la branche : le fichier reste uniquement dans la release. Pour compléter la description d’une
+version déjà publiée (résultats de tests, par exemple), poussez `notes/vX.Y.Z.md` sur `main`.
 
 Support : masterzone195@gmail.com

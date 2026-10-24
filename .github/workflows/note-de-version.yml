@@ -1,0 +1,34 @@
+name: Mettre à jour une note de version
+
+# Replaces the description of the published release vX.Y.Z with notes/vX.Y.Z.md when that file is pushed to main
+# (for example to add test results obtained after publication). The APK and its checksums are never touched.
+
+on:
+  push:
+    branches: [main]
+    paths: ['notes/*.md']
+
+permissions:
+  contents: write
+
+jobs:
+  note:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 2
+      - name: Mettre à jour les notes modifiées
+        run: |
+          set -euo pipefail
+          git diff --name-only HEAD~1 HEAD -- 'notes/*.md' | while read -r FILE; do
+            [ -f "$FILE" ] || continue
+            TAG=$(basename "$FILE" .md)
+            [[ "$TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]] || { echo "::warning::$FILE ignoré (nom attendu : vX.Y.Z.md)"; continue; }
+            gh release edit "$TAG" --notes-file "$FILE"
+            echo "::notice title=Note de version::$TAG mise à jour depuis $FILE"
+          done
