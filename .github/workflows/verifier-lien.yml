@@ -1,0 +1,68 @@
+name: Vérifier le lien et la page de téléchargement
+
+# Every Monday, on demand, and after each change of the page: without any account, downloads the latest version
+# through the permanent address (and the short address named in lien-court.txt, if any), checks its SHA-256 and
+# the MasterZone certificate, then checks that the GitHub Pages download page is online and points to it.
+# A failed scheduled run is reported by GitHub to the repository owner.
+
+on:
+  schedule:
+    - cron: '23 6 * * 1'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['index.html']
+
+permissions:
+  contents: read
+
+jobs:
+  verifier:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Télécharger et contrôler la dernière version
+        run: |
+          set -euo pipefail
+          URL="https://github.com/$GITHUB_REPOSITORY/releases/latest/download/masterzone-tv.apk"
+          if ! gh release download --pattern SHA256SUMS.txt --output published.txt 2> /dev/null; then
+            if [ "$GITHUB_EVENT_NAME" = push ]; then echo "::notice::Aucune version publiée pour l'instant"; exit 0; fi
+            echo "::error title=Téléchargement::aucune version publiée"; exit 1
+          fi
+          SHA=$(grep ' masterzone-tv.apk$' published.txt | cut -d' ' -f1)
+          curl -fsSL --retry 3 -A 'Downloader-check' -o latest.apk "$URL"
+          echo "$SHA  latest.apk" | sha256sum -c -
+          BT=$(ls -d "$ANDROID_HOME"/build-tools/* | sort -V | tail -1)
+          CERT=$("$BT/apksigner" verify --print-certs latest.apk | grep -m1 'certificate SHA-256 digest' | sed -E 's/.*: //')
+          [ "$CERT" = "$(tr -d ' \n' < certificat/masterzone-tv-certificate.sha256)" ] || { echo "::error::certificat inattendu $CERT"; exit 1; }
+          VERSION=$("$BT/aapt2" dump badging latest.apk | sed -nE "s/^package: .*versionName='([^']+)'.*/\1/p")
+          SHORT=$(grep -m1 -E '^[A-Za-z0-9_]{5,30}$' lien-court.txt 2> /dev/null || true)
+          NOTE=""
+          if [ -n "$SHORT" ]; then
+            LOCATION=$(curl -s -o /dev/null -w '%{redirect_url}' "https://is.gd/$SHORT")
+            [ "$LOCATION" = "$URL" ] || { echo "::error title=Lien court::is.gd/$SHORT redirige vers « $LOCATION »"; exit 1; }
+            curl -fsSL -A 'Downloader-check' -o short.apk "http://is.gd/$SHORT"
+            echo "$SHA  short.apk" | sha256sum -c -
+            NOTE=" ; lien court is.gd/$SHORT vérifié"
+          fi
+          echo "::notice title=Téléchargement vérifié::version $VERSION, SHA-256 $SHA, certificat MasterZone$NOTE"
+
+      - name: Contrôler la page de téléchargement (GitHub Pages)
+        run: |
+          set -euo pipefail
+          PAGE="https://${GITHUB_REPOSITORY_OWNER,,}.github.io/${GITHUB_REPOSITORY#*/}/"
+          # After a change, GitHub Pages needs a minute or two to publish the new page.
+          for attempt in $(seq 1 20); do
+            if curl -fsSL -o page.html "$PAGE" && cmp -s page.html index.html; then break; fi
+            sleep 15
+          done
+          if [ ! -s page.html ]; then echo "::error title=Page::$PAGE inaccessible : activez GitHub Pages (Settings → Pages → branche main, dossier /)"; exit 1; fi
+          cmp -s page.html index.html || { echo "::error title=Page::$PAGE ne correspond pas encore à index.html"; exit 1; }
+          grep -q "https://github.com/$GITHUB_REPOSITORY/releases/latest/download/masterzone-tv.apk" page.html
+          curl -fsS -o /dev/null "${PAGE}logo-192.png"
+          echo "::notice title=Page vérifiée::$PAGE en ligne, identique à index.html, bouton vers la dernière version"

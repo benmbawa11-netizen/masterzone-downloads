@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#0A0E27">
+<meta name="description" content="Téléchargez MasterZone TV 1.7.1 pour Android TV et Google TV.">
+<title>Télécharger MasterZone TV</title>
+<link rel="icon" href="logo-192.png">
+<style>
+  :root {
+    --ink: #0A0E27;
+    --deep: #121936;
+    --raised: #1A2346;
+    --line: #33466E;
+    --text: #FFFFFF;
+    --muted: #B7C1DE;
+    --cyan: #52D6FF;
+    --cyan-dark: #163A56;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--ink);
+    color: var(--text);
+    font-family: Roboto, "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+    font-size: 18px;
+    line-height: 1.55;
+  }
+  main { max-width: 760px; margin: 0 auto; padding: 32px 20px 56px; }
+  a { color: var(--cyan); }
+  a:focus, summary:focus, .download:focus { outline: 4px solid var(--cyan); outline-offset: 4px; }
+  a:focus:not(:focus-visible), summary:focus:not(:focus-visible) { outline-width: 2px; }
+
+  .brand { display: flex; align-items: center; margin-bottom: 40px; }
+  .brand img { width: 56px; height: 56px; margin-right: 14px; }
+  .brand span { font-size: 20px; font-weight: 700; letter-spacing: 0.01em; }
+
+  h1 { font-size: 46px; line-height: 1.08; letter-spacing: -0.02em; font-weight: 800; margin: 0 0 12px; max-width: 14em; }
+  .lead { color: var(--muted); font-size: 20px; margin: 0 0 28px; max-width: 34em; }
+
+  .download {
+    display: inline-block;
+    background: var(--cyan);
+    color: var(--ink);
+    font-size: 24px;
+    font-weight: 800;
+    text-decoration: none;
+    padding: 20px 34px;
+    border-radius: 14px;
+  }
+  .download:hover { background: #8FE5FF; }
+  .facts { display: flex; flex-wrap: wrap; margin: 22px 0 0; padding: 0; }
+  .facts div { margin: 0 32px 8px 0; }
+  .facts dt { color: var(--muted); font-size: 15px; }
+  .facts dd { margin: 0; font-size: 20px; font-weight: 700; font-variant-numeric: tabular-nums; }
+
+  /* The one memorable element: the TV screen showing what to type with the remote. */
+  .tv { margin: 48px 0 12px; }
+  .tv-screen {
+    background: linear-gradient(180deg, #050816 0%, #0D1430 100%);
+    border: 10px solid #1F2A4D;
+    border-radius: 22px;
+    padding: 26px 24px 30px;
+    box-shadow: 0 0 0 2px #2C3B66, 0 22px 50px rgba(0, 0, 0, 0.45);
+  }
+  .tv-screen p { margin: 0 0 14px; color: var(--muted); font-size: 17px; }
+  .address {
+    display: block;
+    font-family: ui-monospace, "DejaVu Sans Mono", "Roboto Mono", Menlo, Consolas, monospace;
+    font-size: 30px;
+    line-height: 1.35;
+    color: var(--text);
+    overflow-wrap: anywhere;
+    background: var(--raised);
+    border: 2px solid var(--cyan);
+    border-radius: 10px;
+    padding: 14px 16px;
+  }
+  .address::after { content: ""; display: inline-block; width: 3px; height: 1.05em; margin-left: 3px; vertical-align: -0.15em; background: var(--cyan); animation: caret 1.1s steps(1) infinite; }
+  @keyframes caret { 50% { opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) { .address::after { animation: none; } }
+  .tv-stand { width: 140px; height: 14px; margin: 0 auto; background: #1F2A4D; border-radius: 0 0 10px 10px; }
+  .tv-note { color: var(--muted); font-size: 16px; margin: 14px 0 0; }
+
+  h2 { font-size: 28px; line-height: 1.2; letter-spacing: -0.01em; margin: 52px 0 16px; }
+  ol.steps { margin: 0; padding: 0; list-style: none; counter-reset: step; }
+  ol.steps li { counter-increment: step; position: relative; padding: 0 0 22px 60px; }
+  ol.steps li::before {
+    content: counter(step);
+    position: absolute; left: 0; top: -2px;
+    width: 42px; height: 42px; line-height: 42px; text-align: center;
+    border-radius: 50%;
+    background: var(--cyan-dark); color: var(--cyan);
+    font-weight: 800; font-size: 20px;
+  }
+  ol.steps strong { display: block; font-size: 20px; }
+  ol.steps span { color: var(--muted); }
+
+  .compat { display: grid; grid-template-columns: 1fr 1fr; grid-gap: 20px; }
+  .compat h3 { font-size: 18px; margin: 0 0 8px; }
+  .compat ul { margin: 0; padding-left: 20px; color: var(--muted); }
+  .compat .no h3 { color: var(--muted); }
+
+  details { border-top: 1px solid var(--line); padding: 14px 0; }
+  details:last-of-type { border-bottom: 1px solid var(--line); }
+  summary { cursor: pointer; font-weight: 700; font-size: 19px; padding: 4px 0; }
+  details p { color: var(--muted); margin: 10px 0 4px; }
+
+  .proof { margin-top: 52px; color: var(--muted); font-size: 15px; }
+  .proof code { display: block; font-family: ui-monospace, "DejaVu Sans Mono", "Roboto Mono", Menlo, Consolas, monospace; font-size: 14px; color: var(--text); word-break: break-all; margin: 4px 0 12px; }
+  footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--muted); font-size: 15px; }
+
+  @media (max-width: 560px) {
+    body { font-size: 17px; }
+    main { padding: 24px 16px 44px; }
+    h1 { font-size: 36px; }
+    .download { display: block; text-align: center; font-size: 22px; padding: 18px 20px; }
+    .address { font-size: 22px; }
+    .tv-screen { border-width: 7px; padding: 20px 16px 24px; }
+    .compat { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<main>
+  <header class="brand">
+    <img src="logo-192.png" width="56" height="56" alt="">
+    <span>Master Zone</span>
+  </header>
+
+  <h1>Télécharger MasterZone TV</h1>
+  <p class="lead">Le lecteur MasterZone pour Android TV, Google TV et les boîtiers Android. Il se pilote entièrement avec la télécommande.</p>
+
+  <a class="download" href="https://github.com/rv2kd22k9n-star/masterzone-tv/releases/latest/download/masterzone-tv.apk" autofocus>Télécharger pour Android TV</a>
+  <dl class="facts">
+    <div><dt>Version</dt><dd>1.7.1</dd></div>
+    <div><dt>Taille</dt><dd>49,8 Mo</dd></div>
+    <div><dt>Publiée le</dt><dd>24 octobre 2026</dd></div>
+    <div><dt>Android</dt><dd>7.0 ou plus récent</dd></div>
+  </dl>
+
+  <section class="tv" aria-labelledby="tv-title">
+    <div class="tv-screen">
+      <p id="tv-title">Sur votre téléviseur, ouvrez Downloader et tapez cette adresse :</p>
+      <span class="address">github.com/<wbr>rv2kd22k9n-star/<wbr>masterzone-tv/<wbr>releases/<wbr>latest/<wbr>download/<wbr>masterzone-tv.apk</span>
+    </div>
+    <div class="tv-stand" aria-hidden="true"></div>
+    <p class="tv-note">Le téléchargement commence tout seul. Les majuscules et les minuscules doivent être respectées.</p>
+  </section>
+
+  <h2>Installer sur Android TV ou Google TV</h2>
+  <ol class="steps">
+    <li><strong>Installez l’application Downloader</strong><span>Sur le téléviseur, ouvrez le Google Play Store (ou l’Amazon Appstore sur Fire TV), cherchez « Downloader » et installez-la.</span></li>
+    <li><strong>Autorisez Downloader à installer des applications</strong><span>Si le téléviseur affiche « Pour votre sécurité… » pendant l’installation, choisissez Paramètres et activez Downloader. Sinon, dans les Paramètres, cherchez « Sources inconnues » (souvent sous Applications ou Préférences de l’appareil, puis Sécurité et restrictions). Sur Fire TV : Ma Fire TV, Options pour les développeurs, Installer des applications inconnues.</span></li>
+    <li><strong>Tapez l’adresse ci-dessus dans Downloader</strong><span>Utilisez le clavier de l’écran avec les flèches et OK, puis choisissez Go.</span></li>
+    <li><strong>Choisissez Installer</strong><span>Quand l’installation est terminée, choisissez Ouvrir. Vous pouvez ensuite supprimer le fichier téléchargé pour libérer de la place.</span></li>
+    <li><strong>Connectez-vous</strong><span>Utilisez l’adresse e-mail et le mot de passe de votre compte client MasterZone. MasterZone apparaît ensuite dans la liste des applications du téléviseur.</span></li>
+  </ol>
+
+  <h2>Compatibilité</h2>
+  <div class="compat">
+    <div>
+      <h3>Prévu pour</h3>
+      <ul>
+        <li>Téléviseurs Android TV et Google TV</li>
+        <li>Boîtiers Android TV branchés en HDMI</li>
+        <li>Chromecast avec Google TV</li>
+        <li>Fire TV Stick sous Fire OS (non encore testé)</li>
+      </ul>
+    </div>
+    <div class="no">
+      <h3>Incompatible avec</h3>
+      <ul>
+        <li>Téléviseurs Samsung (Tizen)</li>
+        <li>Téléviseurs LG (webOS)</li>
+        <li>Fire TV sous Vega OS</li>
+        <li>iPhone, iPad et Apple TV</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>En cas de problème</h2>
+  <details>
+    <summary>« Installation bloquée » ou « Pour votre sécurité… »</summary>
+    <p>Downloader n’a pas encore le droit d’installer des applications. Refaites l’étape 2, puis relancez le téléchargement.</p>
+  </details>
+  <details>
+    <summary>« Application non installée »</summary>
+    <p>Une ancienne version de test de MasterZone, signée avec une autre clé, peut empêcher l’installation. Désinstallez-la depuis Paramètres, Applications, puis réessayez. Vérifiez aussi qu’il reste au moins 200 Mo d’espace libre.</p>
+  </details>
+  <details>
+    <summary>Le téléchargement ne démarre pas</summary>
+    <p>Vérifiez la connexion Internet du téléviseur et l’adresse tapée, caractère par caractère. Vous pouvez aussi ouvrir cette page dans un navigateur sur le téléviseur et choisir « Télécharger pour Android TV ».</p>
+  </details>
+  <details>
+    <summary>MasterZone n’apparaît pas sur l’écran d’accueil</summary>
+    <p>Ouvrez la liste complète des applications du téléviseur : MasterZone s’y trouve avec sa bannière. Vous pouvez l’ajouter aux favoris de l’accueil.</p>
+  </details>
+
+  <h2>Mises à jour</h2>
+  <p>Quand une nouvelle version est annoncée, téléchargez-la depuis cette même adresse et choisissez Installer : elle remplace l’ancienne et conserve votre compte et vos réglages. La version installée est affichée sur l’écran d’accueil de MasterZone.</p>
+
+  <section class="proof" aria-label="Vérification du fichier">
+    <p>Vérification du fichier (pour les techniciens) :</p>
+    SHA-256 de l’APK 1.7.1 (9)
+    <code>f3c17a3bdacf0ac8de22bddd5d7012fa4d6f0494a61bdd55e5dc0f9303c67ef9</code>
+    Empreinte SHA-256 du certificat de signature MasterZone
+    <code>a483df854d4b6f59879a76889d6559476769553efb5e54055d2e6d5ca90a91d9</code>
+    Identifiant Android : <code>com.masterzone.tv</code>
+  </section>
+
+  <footer>
+    MasterZone est un lecteur multimédia : il ne fournit aucun contenu par lui-même.
+    Besoin d’aide ? Écrivez à <a href="mailto:masterzone195@gmail.com">masterzone195@gmail.com</a>.
+  </footer>
+</main>
+</body>
+</html>

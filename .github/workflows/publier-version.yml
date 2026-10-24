@@ -1,0 +1,80 @@
+name: Publier une version de MasterZone TV
+
+# Publishes the signed APK pushed on a branch publication/vX.Y.Z as a public GitHub release named vX.Y.Z with the
+# file masterzone-tv.apk, then downloads it anonymously through the permanent "latest" address and compares it.
+# The branch is deleted at the end: the APK lives in the release, the git history keeps only the page.
+
+on:
+  push:
+    branches: ['publication/**']
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publication
+  cancel-in-progress: false
+
+jobs:
+  publier:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Contrôler l'APK (identité, version, certificat MasterZone, empreinte)
+        run: |
+          set -euo pipefail
+          APK=release/masterzone-tv.apk
+          fail() { echo "::error title=Publication refusée::$1"; exit 1; }
+          [ -s "$APK" ] || fail "release/masterzone-tv.apk absent"
+          VERSION=$(jq -r .version release/release.json)
+          CODE=$(jq -r .versionCode release/release.json)
+          SHA=$(jq -r .sha256 release/release.json)
+          [[ "$VERSION" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ && "$CODE" =~ ^[0-9]+$ && "$SHA" =~ ^[0-9a-f]{64}$ ]] || fail "release.json invalide"
+          [ "$GITHUB_REF_NAME" = "publication/v$VERSION" ] || fail "branche $GITHUB_REF_NAME différente de publication/v$VERSION"
+          echo "$SHA  $APK" | sha256sum -c - > /dev/null || fail "empreinte SHA-256 différente de release.json"
+          BT=$(ls -d "$ANDROID_HOME"/build-tools/* | sort -V | tail -1)
+          "$BT/aapt2" dump badging "$APK" > badging.txt
+          grep -q "^package: name='com.masterzone.tv' versionCode='$CODE' versionName='$VERSION'" badging.txt \
+            || fail "identité inattendue : $(grep -m1 '^package:' badging.txt)"
+          grep -q '^leanback-launchable-activity:' badging.txt || fail "pas de lanceur Android TV"
+          "$BT/apksigner" verify --print-certs "$APK" > signature.txt || fail "signature invalide"
+          CERT=$(grep -m1 'certificate SHA-256 digest' signature.txt | sed -E 's/.*: //')
+          [ "$CERT" = "$(tr -d ' \n' < certificat/masterzone-tv-certificate.sha256)" ] || fail "certificat $CERT différent du certificat MasterZone"
+          if gh release view "v$VERSION" > /dev/null 2>&1; then fail "la version v$VERSION est déjà publiée"; fi
+          # Android refuses an update whose versionCode is not greater than the installed one.
+          if gh release download --pattern release.json --output previous.json 2> /dev/null; then
+            PREVIOUS=$(jq -r .versionCode previous.json)
+            [ "$CODE" -gt "$PREVIOUS" ] || fail "versionCode $CODE non supérieur à la version publiée ($PREVIOUS)"
+          fi
+          { echo "VERSION=$VERSION"; echo "CODE=$CODE"; echo "SHA=$SHA"; } >> "$GITHUB_ENV"
+          echo "::notice title=APK contrôlé::com.masterzone.tv $VERSION ($CODE) — certificat MasterZone — SHA-256 $SHA"
+
+      - name: Créer la release publique
+        run: |
+          set -euo pipefail
+          cd release
+          sha256sum masterzone-tv.apk > SHA256SUMS.txt
+          # The tag points at main (page only), never at the commit carrying the APK.
+          gh release create "v$VERSION" masterzone-tv.apk SHA256SUMS.txt release.json \
+            --title "MasterZone TV $VERSION" --notes-file notes.md --target main --latest
+
+      - name: Vérifier le lien public sans compte GitHub
+        run: |
+          set -euo pipefail
+          URL="https://github.com/$GITHUB_REPOSITORY/releases/latest/download/masterzone-tv.apk"
+          for attempt in 1 2 3 4 5 6; do
+            # No token, no cookie: exactly what a customer's TV receives.
+            if curl -fsSL --proto '=https' -A 'Downloader-check' -D headers.txt -o public.apk "$URL"; then break; fi
+            sleep 10
+          done
+          echo "$SHA  public.apk" | sha256sum -c -
+          grep -iE '^(HTTP/|location:|content-type:|content-length:)' headers.txt | sed -E 's/(location: [^?]*)\?.*/\1?…/I'
+          echo "::notice title=Lien public vérifié::$URL — $(stat -c %s public.apk) octets, SHA-256 identique, téléchargé sans compte"
+
+      - name: Supprimer la branche de publication
+        run: gh api -X DELETE "repos/$GITHUB_REPOSITORY/git/refs/heads/$GITHUB_REF_NAME"
