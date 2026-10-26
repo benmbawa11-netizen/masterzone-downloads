@@ -1,4 +1,5 @@
 """Explicit publication targets and safe addition of the second Android edition."""
+import re
 
 
 def publication_targets(release):
@@ -25,3 +26,15 @@ def check_progression(previous, current):
             for field in ('package', 'sha256', 'certificateSha256'):
                 if previous['artifacts'][target][field] != current['artifacts'][target][field]:
                     raise ValueError('Un APK déjà publié ne peut changer avec le même versionCode')
+
+
+def artifact_names(release, target, spec):
+    version = str(release.get('version', ''))
+    if not re.fullmatch(r'\d+\.\d+\.\d+', version):
+        raise ValueError('Version invalide')
+    stable = spec['stableAssetName']
+    versioned = stable[:-4] + '-v' + version + '.apk'
+    item = release['artifacts'][target]
+    if item.get('file') != versioned or item.get('stableFile') != stable:
+        raise ValueError('Noms APK inattendus : aucun chemin arbitraire n’est autorisé')
+    return versioned, stable

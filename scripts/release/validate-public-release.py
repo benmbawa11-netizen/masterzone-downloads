@@ -2,13 +2,14 @@
 import argparse,hashlib,json,os,re,subprocess
 from pathlib import Path
 from release_config import ROOT,load,approved_apk_url
-from release_manifest import publication_targets
+from release_manifest import publication_targets,artifact_names
 p=argparse.ArgumentParser();p.add_argument('--release-dir',required=True);a=p.parse_args();d=Path(a.release_dir).resolve();i=json.loads((d/'release.json').read_text());c=load()
 if i.get('testOnly') is not False:raise ValueError('APK client requis')
 targets=publication_targets(i)
 if not re.fullmatch(r'\d+\.\d+\.\d+',str(i['version'])) or type(i['versionCode']) is not int or i['versionCode']<10:raise ValueError('version invalide')
 for t,item in i['artifacts'].items():
  spec=c['artifacts'][t];cert=(ROOT/spec['certificateFile']).read_text().strip()
+ artifact_names(i,t,spec)
  if item['package']!=spec['package'] or item['stableFile']!=spec['stableAssetName'] or item['certificateSha256']!=cert or not re.fullmatch('[0-9a-f]{64}',cert):raise ValueError('identité ou certificat incorrect')
  approved_apk_url(item['url'],c,t);f=d/spec['stableAssetName'];data=f.read_bytes()
  if len(data)!=item['size'] or hashlib.sha256(data).hexdigest()!=item['sha256']:raise ValueError('octets incorrects')

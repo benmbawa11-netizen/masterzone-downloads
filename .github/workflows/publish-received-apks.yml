@@ -1,0 +1,117 @@
+name: Inspecter et publier les APK signés reçus
+on:
+  push:
+    branches: [main]
+    paths: ['publication/manifest.json']
+  workflow_dispatch:
+permissions: {contents: read}
+concurrency:
+  group: masterzone-public-release
+  cancel-in-progress: false
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+        with: {persist-credentials: false}
+      - name: Contrôler la destination publique
+        env: {GH_TOKEN: '${{ github.token }}'}
+        run: |
+          test "$(gh api "repos/$GITHUB_REPOSITORY" --jq .private)" = false
+          python3 - <<'PY'
+          import json,os
+          assert json.load(open('distribution/release-config.json'))['publicRepository']==os.environ['GITHUB_REPOSITORY']
+          PY
+      - name: Reconstituer uniquement les APK annoncés
+        run: |
+          python3 scripts/release/receive-apks.py --manifest publication/manifest.json --release-json publication/release.json --parts publication --out release
+          cp publication/release.json publication/SHA256SUMS.txt publication/notes.md release/
+          (cd release && sha256sum --check SHA256SUMS.txt)
+      - uses: actions/setup-java@v5
+        with: {distribution: temurin, java-version: '17'}
+      - uses: android-actions/setup-android@v4
+      - run: sdkmanager 'build-tools;36.0.0'
+      - name: Vérifier la signature et le contenu natif avant publication
+        run: python3 scripts/release/validate-public-release.py --release-dir release
+      - uses: actions/upload-artifact@v4
+        with:
+          name: verified-client-apks
+          path: release/
+          if-no-files-found: error
+          retention-days: 7
+  publish:
+    needs: verify
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    permissions: {contents: write}
+    steps:
+      - uses: actions/checkout@v5
+        with: {persist-credentials: false}
+      - uses: actions/download-artifact@v4
+        with: {name: verified-client-apks, path: release}
+      - name: Publier les fichiers signés et tester le téléchargement anonyme
+        env: {GH_TOKEN: '${{ github.token }}'}
+        run: |
+          set -euo pipefail
+          test "$(gh api "repos/$GITHUB_REPOSITORY" --jq .private)" = false
+          TAG=$(PYTHONPATH=scripts/release python3 - <<'PY'
+          import json
+          from release_manifest import publication_targets
+          r=json.load(open('release/release.json'));targets=publication_targets(r)
+          print('v'+r['version']+('-'+targets[0] if len(targets)==1 else ''))
+          PY
+          )
+          if gh release view "$TAG" --repo "$GITHUB_REPOSITORY" --json isDraft > existing-release.json 2>/dev/null; then
+            if [ "$(jq -r .isDraft existing-release.json)" = false ]; then
+              gh release download "$TAG" --repo "$GITHUB_REPOSITORY" --pattern release.json --output existing-manifest.json
+              python3 -c "import json;assert json.load(open('existing-manifest.json'))==json.load(open('release/release.json')), 'La release existante diffère : aucun remplacement autorisé'"
+            else
+              gh release upload "$TAG" --repo "$GITHUB_REPOSITORY" release/*.apk release/release.json release/SHA256SUMS.txt release/public-inspection.md --clobber
+              gh release edit "$TAG" --repo "$GITHUB_REPOSITORY" --draft=false --latest
+            fi
+          else
+            if gh release download --repo "$GITHUB_REPOSITORY" --pattern release.json --output previous.json 2>/dev/null; then
+              PYTHONPATH=scripts/release python3 -c "import json;from release_manifest import check_progression;check_progression(json.load(open('previous.json')),json.load(open('release/release.json')))"
+            fi
+            gh release create "$TAG" --repo "$GITHUB_REPOSITORY" --draft --target main --title "MasterZone $(jq -r .version release/release.json)" --notes-file release/notes.md
+            gh release upload "$TAG" --repo "$GITHUB_REPOSITORY" release/*.apk release/release.json release/SHA256SUMS.txt release/public-inspection.md
+            gh release edit "$TAG" --repo "$GITHUB_REPOSITORY" --draft=false --latest
+          fi
+          if ! python3 scripts/release/verify-public-downloads.py --release-json release/release.json --out anonymous-check; then
+            gh release edit "$TAG" --repo "$GITHUB_REPOSITORY" --draft=true
+            exit 1
+          fi
+          python3 scripts/release/render-download-page.py --release-json release/release.json --out site
+      - uses: actions/upload-pages-artifact@v3
+        with: {path: site}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: anonymous-publication-proof
+          path: |
+            anonymous-check/anonymous-downloads.json
+            release/public-inspection.md
+          if-no-files-found: error
+          retention-days: 30
+  deploy-page:
+    needs: publish
+    runs-on: ubuntu-24.04
+    permissions: {pages: write, id-token: write}
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - name: Vérifier que Pages a été activé par le propriétaire
+        id: configured
+        env: {GH_TOKEN: '${{ github.token }}'}
+        run: |
+          if gh api "repos/$GITHUB_REPOSITORY/pages" > "$RUNNER_TEMP/pages.json" 2>/dev/null && [ "$(jq -r .build_type "$RUNNER_TEMP/pages.json")" = workflow ]; then
+            echo 'enabled=true' >> "$GITHUB_OUTPUT"
+          else
+            echo 'enabled=false' >> "$GITHUB_OUTPUT"
+            echo '::notice::APK publiés et vérifiés. Pour la page, activer Settings > Pages > Source : GitHub Actions, puis lancer le workflow Publier la page.'
+          fi
+      - uses: actions/deploy-pages@v4
+        id: deploy
+        if: steps.configured.outputs.enabled == 'true'
