@@ -9,3 +9,7 @@ Le workflow privé `masterzone-publish.yml` publie les fichiers signés et véri
 Les noms stables sont `MasterZone-Android.apk` et `MasterZone-TV.apk`. Les noms versionnés conservent les mêmes octets. Un APK preview, TEST-ONLY, non signé, mal identifié ou signé avec un autre certificat est refusé. Les certificats attendus sont dans `signing/`.
 
 Les scripts peuvent aussi préparer et vérifier une distribution sur un autre hébergeur HTTPS permis ; aucun compte externe n’est supposé connecté.
+
+## État de publication
+
+Dépôt de distribution autorisé par le propriétaire : benmbawa11-netizen/masterzone-downloads. Aucun APK client n’est encore publié. Les deux téléchargements restent indisponibles jusqu’à l’obtention et à la vérification de véritables APK signés.
