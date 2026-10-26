@@ -1,32 +1,11 @@
-# MasterZone TV — téléchargement
+# MasterZone — téléchargements Android et TV
 
-Ce dépôt sert uniquement à distribuer l’application **MasterZone TV** pour Android TV, Google TV et les boîtiers
-Android. Il ne contient pas le code source de l’application.
+Ce dépôt public contient uniquement la page, les outils de distribution et les certificats PUBLICS. Les sources de l’application, l’historique privé et les clés restent privés.
 
-## Télécharger
+Configurer `distribution/release-config.json` avec le dépôt public autorisé et la page HTTPS réellement attribuée. Sans configuration ni APK publié, les deux boutons restent indisponibles. Les anciens liens courts ne sont plus utilisés.
 
-- Page d’installation : <https://rv2kd22k9n-star.github.io/masterzone-tv/>
-- Fichier de la dernière version : <https://github.com/rv2kd22k9n-star/masterzone-tv/releases/latest/download/masterzone-tv.apk>
+Le workflow privé `masterzone-publish.yml` publie les fichiers signés et vérifiés, `release.json` et les empreintes. Le jeton inter-dépôts doit être limité à Contents: write sur ce seul dépôt public. Activer **Settings → Pages → Source → GitHub Actions** : après publication d’une release, `publier-page.yml` télécharge sans compte les deux APK, vérifie les certificats et déploie la page. Seul le job de déploiement dispose de Pages: write et OIDC.
 
-Sur le téléviseur : installez **Downloader**, autorisez-le à installer des applications, tapez l’adresse
-indiquée sur la page d’installation, puis choisissez **Installer**.
+Les noms stables sont `MasterZone-Android.apk` et `MasterZone-TV.apk`. Les noms versionnés conservent les mêmes octets. Un APK preview, TEST-ONLY, non signé, mal identifié ou signé avec un autre certificat est refusé. Les certificats attendus sont dans `signing/`.
 
-## Vérifier le fichier
-
-- Identifiant Android : `com.masterzone.tv`
-- Empreinte SHA-256 de chaque APK : dans la description de sa release et dans `SHA256SUMS.txt`
-- Certificat de signature MasterZone (SHA-256) : `a483df854d4b6f59879a76889d6559476769553efb5e54055d2e6d5ca90a91d9`
-  (fichier public `certificat/masterzone-tv-certificate.pem`)
-
-Toutes les versions sont signées avec ce même certificat : une nouvelle version s’installe par-dessus la
-précédente en conservant le compte et les réglages.
-
-## Publication (réservé à MasterZone)
-
-Une version est publiée en poussant une branche `publication/vX.Y.Z` contenant `release/masterzone-tv.apk`,
-`release/release.json` et `release/notes.md`. Le workflow « Publier une version » contrôle l’identifiant, le
-numéro de version, l’empreinte et le certificat MasterZone, crée la release, vérifie le lien public sans compte,
-puis supprime la branche : le fichier reste uniquement dans la release. Pour compléter la description d’une
-version déjà publiée (résultats de tests, par exemple), poussez `notes/vX.Y.Z.md` sur `main`.
-
-Support : masterzone195@gmail.com
+Les scripts peuvent aussi préparer et vérifier une distribution sur un autre hébergeur HTTPS permis ; aucun compte externe n’est supposé connecté.

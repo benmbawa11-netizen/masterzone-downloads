@@ -1,0 +1,1 @@
+{"schemaVersion":1,"publicRepository":"","pageUrl":"","downloadBaseUrl":"","artifacts":{"mobile":{"package":"com.masterzone.app","stableAssetName":"MasterZone-Android.apk","certificateFile":"signing/masterzone-android-certificate.sha256"},"tv":{"package":"com.masterzone.tv","stableAssetName":"MasterZone-TV.apk","certificateFile":"signing/masterzone-tv-certificate.sha256"}}}

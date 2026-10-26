@@ -1,0 +1,50 @@
+name: Vérifier les APK publics puis publier la page
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+permissions: {contents: read}
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v5
+      - name: Vérifier la configuration du dépôt public
+        run: |
+          python3 - <<'PY'
+          import json,os
+          if json.load(open('distribution/release-config.json'))['publicRepository']!=os.environ['GITHUB_REPOSITORY']:raise SystemExit('Configurer publicRepository')
+          PY
+      - name: Télécharger sans session client
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ github.event.release.tag_name }}
+        run: |
+          mkdir release
+          if [ -n "$TAG" ]; then gh release download "$TAG" --repo "$GITHUB_REPOSITORY" --pattern release.json --dir release; else gh release download --repo "$GITHUB_REPOSITORY" --pattern release.json --dir release; fi
+          python3 scripts/release/verify-public-downloads.py --release-json release/release.json --out anonymous-check
+      - uses: android-actions/setup-android@v4
+      - run: sdkmanager 'build-tools;36.0.0'
+      - name: Inspecter les APK reçus puis générer la page
+        run: |
+          python3 scripts/release/validate-public-release.py --release-dir anonymous-check
+          python3 scripts/release/render-download-page.py --release-json release/release.json --out site
+      - uses: actions/upload-pages-artifact@v3
+        with: {path: site}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: public-download-proof
+          path: |
+            anonymous-check/anonymous-downloads.json
+            anonymous-check/public-inspection.md
+  deploy:
+    needs: verify
+    runs-on: ubuntu-24.04
+    permissions: {pages: write, id-token: write}
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/deploy-pages@v4
+        id: deployment
