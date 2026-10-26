@@ -1,0 +1,54 @@
+name: MasterZone — restaurer et compiler
+on:
+  push:
+    branches: ['migration/import-20261026']
+  workflow_dispatch:
+permissions: {contents: read}
+concurrency:
+  group: masterzone-initial-import
+  cancel-in-progress: false
+jobs:
+  import:
+    runs-on: ubuntu-24.04
+    permissions: {contents: write}
+    outputs:
+      commit: ${{ steps.restore.outputs.commit }}
+    steps:
+      - uses: actions/checkout@v5
+        with: {fetch-depth: 0}
+      - name: Vérifier la destination et l’archive
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json,hashlib,os,subprocess
+          m=json.load(open('migration/manifest.json'))
+          assert m['repository']==os.environ['GITHUB_REPOSITORY']
+          assert json.loads(subprocess.check_output(['gh','api','repos/'+m['repository'],'--jq','.private'],text=True))==m['private']
+          b=open('migration/repository.bundle','rb').read()
+          assert len(b)==m['bundleBytes'] and hashlib.sha256(b).hexdigest()==m['bundleSha256']
+          assert subprocess.check_output(['git','ls-remote','origin','refs/heads/main'],text=True).split()[0]==m['initialMain'], 'main a changé : inspection requise'
+          PY
+          git bundle verify migration/repository.bundle
+      - name: Importer l’historique et vérifier l’arbre
+        id: restore
+        run: |
+          set -euo pipefail
+          SOURCE=$(python3 -c "import json;print(json.load(open('migration/manifest.json'))['sourceCommit'])")
+          TREE=$(python3 -c "import json;print(json.load(open('migration/manifest.json'))['sourceTree'])")
+          ORIGINAL=$(python3 -c "import json;print(json.load(open('migration/manifest.json'))['initialMain'])")
+          git fetch migration/repository.bundle '+refs/heads/*:refs/remotes/restored/*'
+          test "$(git rev-parse "$SOURCE^{tree}")" = "$TREE"
+          git config user.name 'MasterZone restoration'
+          git config user.email 'masterzone-restoration@users.noreply.github.com'
+          git checkout --detach "$SOURCE"
+          mapfile -t RESTORED < <(git for-each-ref --format='%(refname)' refs/remotes/restored)
+          git merge --allow-unrelated-histories --no-edit -s ours "$ORIGINAL" "${RESTORED[@]}" -m 'chore: restore verified MasterZone histories into the owner-approved repository'
+          test "$(git rev-parse 'HEAD^{tree}')" = "$TREE"
+          for REF in "${RESTORED[@]}"; do git merge-base --is-ancestor "$REF" HEAD; done
+          git push origin HEAD:refs/heads/main
+          COMMIT=$(git rev-parse HEAD)
+          echo "commit=$COMMIT" >> "$GITHUB_OUTPUT"
+          printf 'Commit restauré : %s\nArbre vérifié : %s\n' "$COMMIT" "$TREE" >> "$GITHUB_STEP_SUMMARY"
+          git fsck --full --no-dangling

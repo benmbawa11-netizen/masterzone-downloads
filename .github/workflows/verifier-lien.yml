@@ -1,0 +1,22 @@
+name: Vérifier les téléchargements Android et TV
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '23 6 * * 1'
+permissions: {contents: read}
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+      - name: Télécharger les fichiers publics sans session client
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release download --repo "$GITHUB_REPOSITORY" --pattern release.json
+          python3 scripts/release/verify-public-downloads.py --release-json release.json --out anonymous-check
+      - uses: android-actions/setup-android@v4
+      - run: sdkmanager 'build-tools;36.0.0'
+      - run: python3 scripts/release/validate-public-release.py --release-dir anonymous-check
+      - uses: actions/upload-artifact@v4
+        with: {name: download-proof, path: anonymous-check/anonymous-downloads.json}
