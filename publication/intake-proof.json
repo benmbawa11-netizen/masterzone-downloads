@@ -1,0 +1,15 @@
+{
+  "file": "MasterZone-Android-v1.7.2.apk",
+  "size": 49687932,
+  "sha256": "eb32c77f239274052a1b9beeeab6a4b52470d4aac0b2cc2e886558dd4d4c4067",
+  "certificateSha256": "494a07853b723938c9f91f84bc50b93e65c641f5bd472802c0faeda07604eeba",
+  "package": "com.masterzone.app",
+  "versionName": "1.7.2",
+  "versionCode": 10,
+  "signedRelease": true,
+  "nativeInspectionPassed": true,
+  "pythonAlignment16KiBPassed": true,
+  "zipalignStatus": "passed",
+  "physicalDeviceTested": false,
+  "emulatorTested": false
+}
