@@ -15,7 +15,7 @@ Les scripts peuvent aussi préparer et vérifier une distribution sur un autre h
 Dépôt de distribution autorisé par le propriétaire : benmbawa11-netizen/masterzone-downloads.
 - **Téléphone Android 1.8.1 (12)** publié le 29/10/2026, signé avec la **nouvelle clé** MasterZone (les clés d’origine ont été perdues avec l’ancien compte ; aucun client réel n’avait installé l’application). Une ancienne installation 1.7.x doit être désinstallée une fois.
 - **Code Downloader téléphone : 9824404** (aftv.news/9824404 → lien « latest », toujours la dernière version).
-- TV : pas encore publiée sur cette page.
+- **TV Android / Google TV 1.8.1 (12)** publiée le 29/10/2026 avec la nouvelle clé TV (même version que le téléphone).
 
 ### Publier Android avant la TV
 
