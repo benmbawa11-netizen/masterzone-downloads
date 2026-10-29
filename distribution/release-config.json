@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "publicRepository": "benmbawa11-netizen/masterzone-downloads",
   "pageUrl": "",
-  "downloadBaseUrl": "https://github.com/benmbawa11-netizen/masterzone-downloads/releases/download/v1.7.2-mobile",
+  "downloadBaseUrl": "https://github.com/benmbawa11-netizen/masterzone-downloads/releases/download/v1.8.1-mobile",
   "artifacts": {
     "mobile": {
       "package": "com.masterzone.app",

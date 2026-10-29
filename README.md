@@ -12,8 +12,9 @@ Les scripts peuvent aussi préparer et vérifier une distribution sur un autre h
 
 ## État de publication
 
-Dépôt de distribution autorisé par le propriétaire : benmbawa11-netizen/masterzone-downloads. Aucun APK client n’est encore publié. Les deux téléchargements restent indisponibles jusqu’à l’obtention et à la vérification de véritables APK signés.
-
+Dépôt de distribution autorisé par le propriétaire : benmbawa11-netizen/masterzone-downloads.
+- **Téléphone Android 1.8.1 (12)** publié le 29/10/2026, signé avec la **nouvelle clé** MasterZone (les clés d’origine ont été perdues avec l’ancien compte ; aucun client réel n’avait installé l’application). Une ancienne installation 1.7.x doit être désinstallée une fois.
+- TV : pas encore publiée sur cette page.
 
 ### Publier Android avant la TV
 

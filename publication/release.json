@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "version": "1.7.2",
-  "versionCode": 10,
+  "version": "1.8.1",
+  "versionCode": 12,
   "testOnly": false,
   "targets": [
     "mobile"
@@ -9,12 +9,12 @@
   "artifacts": {
     "mobile": {
       "package": "com.masterzone.app",
-      "file": "MasterZone-Android-v1.7.2.apk",
+      "file": "MasterZone-Android-v1.8.1.apk",
       "stableFile": "MasterZone-Android.apk",
-      "size": 49687932,
-      "sha256": "783f3c51b7164b29c397c2d12d857c06ed866076061af0eda571bbab7bd9b110",
-      "certificateSha256": "494a07853b723938c9f91f84bc50b93e65c641f5bd472802c0faeda07604eeba",
-      "url": "https://github.com/benmbawa11-netizen/masterzone-downloads/releases/download/v1.7.2-mobile/MasterZone-Android.apk"
+      "size": 49754444,
+      "sha256": "00bd6383cb9520761413357f00ab8873a1bb770455c679728460a167ad65b312",
+      "certificateSha256": "0b377957774d696d150c2856a439d114c5ccde5033ea9b1b202ecdc2a29385b7",
+      "url": "https://github.com/benmbawa11-netizen/masterzone-downloads/releases/download/v1.8.1-mobile/MasterZone-Android.apk"
     }
   }
 }
