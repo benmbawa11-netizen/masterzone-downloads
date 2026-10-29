@@ -11,7 +11,8 @@ def render(c,release=None):
    if release.get('testOnly') is not False or item['package']!=c['artifacts'][t]['package']:raise ValueError('APK client requis')
    if item.get('url'):
     url=approved_apk_url(item['url'],c,t);esc=html.escape
-    body=f'<p>Version {esc(release["version"])} ({int(release["versionCode"])}) · {int(item["size"])/1000000:.1f} Mo</p><a class="download" href="{esc(url,quote=True)}">Télécharger l’APK {title}</a><details><summary>Vérifier le fichier</summary><p>{esc(item["file"])}</p><p>SHA-256</p><code>{esc(item["sha256"])}</code><p>Certificat SHA-256</p><code>{esc(item["certificateSha256"])}</code></details>'
+    dc=str(c['artifacts'][t].get('downloaderCode',''));code=f'<p>Avec l’application <strong>Downloader</strong> : tapez le code <strong style="font-size:1.6em">{esc(dc)}</strong> puis « Go ».</p>' if dc.isdigit() else ''
+    body=f'<p>Version {esc(release["version"])} ({int(release["versionCode"])}) · {int(item["size"])/1000000:.1f} Mo</p><a class="download" href="{esc(url,quote=True)}">Télécharger l’APK {title}</a>{code}<details><summary>Vérifier le fichier</summary><p>{esc(item["file"])}</p><p>SHA-256</p><code>{esc(item["sha256"])}</code><p>Certificat SHA-256</p><code>{esc(item["certificateSha256"])}</code></details>'
   cards.append(f'<section class="card"><small>{desc}</small><h2>{title}</h2>{body}</section>')
  return (ROOT/'distribution/index.template.html').read_text().replace('{{CARDS}}','\n'.join(cards))
 

@@ -7,7 +7,8 @@
     "mobile": {
       "package": "com.masterzone.app",
       "stableAssetName": "MasterZone-Android.apk",
-      "certificateFile": "signing/masterzone-android-certificate.sha256"
+      "certificateFile": "signing/masterzone-android-certificate.sha256",
+      "downloaderCode": "9824404"
     },
     "tv": {
       "package": "com.masterzone.tv",
