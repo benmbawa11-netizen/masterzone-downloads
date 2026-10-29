@@ -13,7 +13,8 @@
     "tv": {
       "package": "com.masterzone.tv",
       "stableAssetName": "MasterZone-TV.apk",
-      "certificateFile": "signing/masterzone-tv-certificate.sha256"
+      "certificateFile": "signing/masterzone-tv-certificate.sha256",
+      "downloaderCode": "8474968"
     }
   }
 }

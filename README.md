@@ -16,6 +16,7 @@ Dépôt de distribution autorisé par le propriétaire : benmbawa11-netizen/mast
 - **Téléphone Android 1.8.1 (12)** publié le 29/10/2026, signé avec la **nouvelle clé** MasterZone (les clés d’origine ont été perdues avec l’ancien compte ; aucun client réel n’avait installé l’application). Une ancienne installation 1.7.x doit être désinstallée une fois.
 - **Code Downloader téléphone : 9824404** (aftv.news/9824404 → lien « latest », toujours la dernière version).
 - **TV Android / Google TV 1.8.1 (12)** publiée le 29/10/2026 avec la nouvelle clé TV (même version que le téléphone).
+- **Code Downloader TV : 8474968** (aftv.news/8474968 → lien « latest » de l’APK TV).
 
 ### Publier Android avant la TV
 
