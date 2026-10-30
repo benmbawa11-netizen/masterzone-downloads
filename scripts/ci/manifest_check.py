@@ -85,7 +85,7 @@ def check(text,target='tv'):
         for name in ('debuggable','testOnly'):
             if name in application['attrs'] and not falsy(application['attrs'][name]):errors.append(name+' interdit en production')
     for launcher in launchers:
-        if target=='mobile' and str(launcher['screenOrientation']) not in ('10','0xa','fullSensor'):errors.append('rotation mobile fullSensor requise')
+        if target=='mobile' and str(launcher['screenOrientation']) not in ('6','0x6','sensorLandscape'):errors.append('mobile verrouillé en paysage (sensorLandscape) requis')
         if 'android.intent.category.LEANBACK_LAUNCHER' in launcher['categories'] and str(launcher['screenOrientation']) not in ('0', '0x0', 'landscape'):
             errors.append(f"orientation du lecteur inattendue : {launcher['screenOrientation']} (paysage attendu)")
     return facts, errors
