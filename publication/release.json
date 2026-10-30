@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "version": "1.8.2",
-  "versionCode": 13,
+  "version": "1.8.3",
+  "versionCode": 14,
   "testOnly": false,
   "targets": [
     "mobile",
@@ -10,21 +10,21 @@
   "artifacts": {
     "mobile": {
       "package": "com.masterzone.app",
-      "file": "MasterZone-Android-v1.8.2.apk",
+      "file": "MasterZone-Android-v1.8.3.apk",
       "stableFile": "MasterZone-Android.apk",
-      "size": 49754888,
-      "sha256": "f87f2c66732fb0a8cef4374859e7c129089c00001f606dd3faf2861a21401bc8",
+      "size": 49760076,
+      "sha256": "9e394a4ae377a2c4270a8cbc687b435f0a72bbdd55dc451862146713cf27aa8f",
       "certificateSha256": "0b377957774d696d150c2856a439d114c5ccde5033ea9b1b202ecdc2a29385b7",
-      "url": "https://github.com/benmbawa11-netizen/masterzone-downloads/releases/download/v1.8.2/MasterZone-Android.apk"
+      "url": "https://github.com/benmbawa11-netizen/masterzone-downloads/releases/download/v1.8.3/MasterZone-Android.apk"
     },
     "tv": {
       "package": "com.masterzone.tv",
-      "file": "MasterZone-TV-v1.8.2.apk",
+      "file": "MasterZone-TV-v1.8.3.apk",
       "stableFile": "MasterZone-TV.apk",
-      "size": 49920020,
-      "sha256": "3acd78cefe60922d931031363e94f8170e71635d2dd56b12b61593174c480b9f",
+      "size": 49925572,
+      "sha256": "227e9f25d82a8b71eff117050290ef78e4e7592e9af7f94d30fc194348536993",
       "certificateSha256": "6bd3e816c2af9df3543d09900f7274ca6cb948a7f0622170766064d829972032",
-      "url": "https://github.com/benmbawa11-netizen/masterzone-downloads/releases/download/v1.8.2/MasterZone-TV.apk"
+      "url": "https://github.com/benmbawa11-netizen/masterzone-downloads/releases/download/v1.8.3/MasterZone-TV.apk"
     }
   }
 }
