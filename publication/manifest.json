@@ -3,325 +3,325 @@
   "archives": [
     {
       "target": "mobile",
-      "size": 22551232,
-      "sha256": "513f9c73fd1a7588981306315bc6901540056bbc55598d5ee1395859f4dfdacd",
+      "size": 22551460,
+      "sha256": "6dd03a204768d960d49a9ceae4b7ea5356a5fdd5d590aaf62bd2347c77c10ac5",
       "parts": [
         {
           "file": "mobile.apk.xz.part-000",
           "size": 737280,
-          "sha256": "34f946ad39ac5e3e69fc47903b0dc3d6252ef205fddc2b890348bcefc696e265"
+          "sha256": "6b242f1fc707b4baac66e1d1c6f693b8c69060914010b15a1e99b514674a07aa"
         },
         {
           "file": "mobile.apk.xz.part-001",
           "size": 737280,
-          "sha256": "72dd8937431fcafe2508cc414b287b8924ec46efae33588cd735feb011eaccde"
+          "sha256": "e9914a6b0e111f78c474f7290cc1689422c3430909778fada6aee1e04e972218"
         },
         {
           "file": "mobile.apk.xz.part-002",
           "size": 737280,
-          "sha256": "74f860de05f841a24d3b8cfaa540142a397caedb04b50dc83188bdd768001521"
+          "sha256": "7a03667669a4699a691a6684ea9dfdfab017c7011eaed914c54e678b09e6fdf7"
         },
         {
           "file": "mobile.apk.xz.part-003",
           "size": 737280,
-          "sha256": "9b3148c230b7693986dc156446d7eb5805a46bf68f931b9c5c857374392b9158"
+          "sha256": "04dd352ad7d64f9cb3732687cd888996709bb1b287d6aca3c8dc9c5075e57e0c"
         },
         {
           "file": "mobile.apk.xz.part-004",
           "size": 737280,
-          "sha256": "cce49e1a0b01f5affc017b8bf83c674ae872e464102b4f5847e36045a8bb718d"
+          "sha256": "18916bcc898e5c7b7e8aa8e8bf5b6ccb3c073ff0dad26ba9ec57fff7a92d36ef"
         },
         {
           "file": "mobile.apk.xz.part-005",
           "size": 737280,
-          "sha256": "88808f61dfbf00dc93732dafd9ca8f880d8b0100622440bec43c22d8646fcb8e"
+          "sha256": "563aa6ad6c7e0c90a9a7299eeab66ff69f574acf732988b36a69e32c67c2d9e6"
         },
         {
           "file": "mobile.apk.xz.part-006",
           "size": 737280,
-          "sha256": "e4211a214f69169547c0d0e1fc8c94cbb8cf244d77dec0fa2946cbc1c18bfd59"
+          "sha256": "8dbae4f54a4f6f0714da10423bfc8edb8181f74ebf7261c69b7d742bcadc0528"
         },
         {
           "file": "mobile.apk.xz.part-007",
           "size": 737280,
-          "sha256": "5083329361156a07c1df8d626817f07cdf9642e1ccac54544b65bcd4147f8108"
+          "sha256": "4dbd5447af6558a9d148bb3703c7eaf31df90da8bd168fb9ea54d6e3669b7ac6"
         },
         {
           "file": "mobile.apk.xz.part-008",
           "size": 737280,
-          "sha256": "da97716d969118856cfb75035231e702098ed4450fcf9727e06215dc5c5a5b6c"
+          "sha256": "bdd83b24440f6a2c47854531e4c5b0e3e3f4aabaa8faeed432c57aed04618edd"
         },
         {
           "file": "mobile.apk.xz.part-009",
           "size": 737280,
-          "sha256": "8c178a9f78fc41a860355e512f444dd351f109390225bd9a081a2f25bf9966aa"
+          "sha256": "c0a2b9ced538e335f3c96a3f5ccd2197d424179738ce63d3ce9c4820a28491ce"
         },
         {
           "file": "mobile.apk.xz.part-010",
           "size": 737280,
-          "sha256": "7e46e662afa4d5735912f0d4fde3f75f4f1136bfd9c6a5759a09cb89a2ecf2f5"
+          "sha256": "65d5ec4c62a26203836da0e4e36c97eda8ca2da732eae92fa9ec597b17e5ae69"
         },
         {
           "file": "mobile.apk.xz.part-011",
           "size": 737280,
-          "sha256": "93f7052f4fae047a42af6d14ecef0d6a695aa6c82d5215a59edf946febb0a484"
+          "sha256": "5cb12b967e96c6e186621c7618495915a8bf9cd08d373dd76f745489f5f21698"
         },
         {
           "file": "mobile.apk.xz.part-012",
           "size": 737280,
-          "sha256": "8db6bdbd66d5266203e87f427e180e29808aafbf2b880466d11cc68522a45d2a"
+          "sha256": "2afac023dbaca54b18b59a7a82bd01a3a732433576c0657d13f7c57b01945fb1"
         },
         {
           "file": "mobile.apk.xz.part-013",
           "size": 737280,
-          "sha256": "a1fb485cb8ad1c80ee0f0273458721d32126770ce01e0c0496297be9bcd13c5b"
+          "sha256": "99901b3625bc109ef24ce2894b6509c6c6682c50d0421fdd0719cb2293f91b46"
         },
         {
           "file": "mobile.apk.xz.part-014",
           "size": 737280,
-          "sha256": "fb11693e1096d9509b78c83c1cb48f6dd076a53a2ea8855f842cd4954d2fac2b"
+          "sha256": "de1f4a3fb09b5938cf63bfa748a15e7f93281f2e1b40702acf4575d09f6c2cdc"
         },
         {
           "file": "mobile.apk.xz.part-015",
           "size": 737280,
-          "sha256": "5af0fd71dc0d37fd16996deee0276781cc6d5237a9959737fed8ccff8dc7aea9"
+          "sha256": "9aa6ba765aa5892bb13a5c4260e0cce7e87e2400ff0af0aaccad7c16f7aab3f2"
         },
         {
           "file": "mobile.apk.xz.part-016",
           "size": 737280,
-          "sha256": "ba1fbb1709182804bafc35afadcedd7e388bf45c1e924d9597d3768e2fa3fa65"
+          "sha256": "f06da0c4bb0e5d54825131ef1ed711444c3252d1cbbf71235ab947b358828f09"
         },
         {
           "file": "mobile.apk.xz.part-017",
           "size": 737280,
-          "sha256": "97db403413502975809c52952a9ce0e173ecc2fde70d3f9bdd0800db8b2caf21"
+          "sha256": "c28472e7142be5f3cd55450ff13a6998592aeb3ef4ca8a40e429f724767c0309"
         },
         {
           "file": "mobile.apk.xz.part-018",
           "size": 737280,
-          "sha256": "6d52f9282b212c8e61f618942bdcba8bb9647bf38a3c864ec1b6c75a1dbc3718"
+          "sha256": "80a6be04292db4fce091c93df09330135af8240affa3687e88b165b350fa8d78"
         },
         {
           "file": "mobile.apk.xz.part-019",
           "size": 737280,
-          "sha256": "93a640b4786bc16d451c2bc0292046c34add382540cf975a6283862190f42e9a"
+          "sha256": "13ffec1b976922a8f1fd1eaf8218462ffa43e2f6a585e81a20ebb8d348c97cee"
         },
         {
           "file": "mobile.apk.xz.part-020",
           "size": 737280,
-          "sha256": "03e92b175a1bf6a37363954b964587d1840763264a650e1b3606456937b45aaf"
+          "sha256": "d81f3dd3a010f0ecae8c78eaecec4bf02904506b3efc4791d0aa68a03dc533e4"
         },
         {
           "file": "mobile.apk.xz.part-021",
           "size": 737280,
-          "sha256": "c7e3da4b21d0d3ff99ef18620a0a8c2a196840e94e046e3bea0659a4ab502425"
+          "sha256": "a5ab2dff6ce10c9b2fd8ed55bedcce123631b56b8343a1431f167bec2b3bbe26"
         },
         {
           "file": "mobile.apk.xz.part-022",
           "size": 737280,
-          "sha256": "4d64a4278d6a0af80c8ee4d5f8635d256e4adfc630a45af83586399c49bfc5d0"
+          "sha256": "26a10257c7205d7a4d84c83a1f5b757d478b5795a43ef25e0d619199a79a8a23"
         },
         {
           "file": "mobile.apk.xz.part-023",
           "size": 737280,
-          "sha256": "807fc086beae08ec31dec62eaee81ef34bba0700a4bb32b91f6aee142e26bef2"
+          "sha256": "7244a28e7dc391ce64999f6260583ca7136026bf73cac38af279ee9159fac97c"
         },
         {
           "file": "mobile.apk.xz.part-024",
           "size": 737280,
-          "sha256": "82e84badc9ba94caf6bef87c49c767dd33ebe1afa0878773b52e6c124cd15078"
+          "sha256": "24dd8a2793b9d50b406178d991ab0b7159d4a3806924e4d673e816a26959b111"
         },
         {
           "file": "mobile.apk.xz.part-025",
           "size": 737280,
-          "sha256": "2e401090245c370cce29e9e0a603908a316f2181bf09c3a21a1c8259d278f0da"
+          "sha256": "d0f73f0796a3fc2b48f1f1fb05e1798aa06a02064109f557a302ef07acfe2269"
         },
         {
           "file": "mobile.apk.xz.part-026",
           "size": 737280,
-          "sha256": "d811401713ad939b6df7c2396bda10dc8ad4525f804b7b5fc5f4c2a555388118"
+          "sha256": "5c65e70cecc0662bb5c8faa3c34fb83ea9334a2e2f082169e518af208833f403"
         },
         {
           "file": "mobile.apk.xz.part-027",
           "size": 737280,
-          "sha256": "adfe5b1be9c43ede61270f8556d456108b18356b1f52f31d70027f02c9aa5bd7"
+          "sha256": "11c5e0b6c9630c8df1dc812b95d55fcbe85c6abc7d06ed618b306e3809ce12eb"
         },
         {
           "file": "mobile.apk.xz.part-028",
           "size": 737280,
-          "sha256": "ec683002deddede1d98900f90d84aafdece778fcdbf052e6bc9beab7074c8921"
+          "sha256": "e4a93f83196b50a7b5a0d1d4e5c8395df83af852d57113bcf948e589575162d4"
         },
         {
           "file": "mobile.apk.xz.part-029",
           "size": 737280,
-          "sha256": "41305d36d623655cf361b8b1f2994c1fc39e274a1148a04e52675a1399670e5d"
+          "sha256": "040fe4d23ad9b722f35c79e564ce8a34b67e2d3cc4288bf1cf09877a761e260c"
         },
         {
           "file": "mobile.apk.xz.part-030",
-          "size": 432832,
-          "sha256": "6becde722144aeb6015be78f6e8b3f2848e5282dadcf4c35ceb7808a9eeb7b9b"
+          "size": 433060,
+          "sha256": "aee6c5f2c422f08d8aa517843e72ec2375db2174a8d2a1c6f4f3fec943a1c32b"
         }
       ]
     },
     {
       "target": "tv",
-      "size": 22579808,
-      "sha256": "8f86fbde4a283f3eec6362f46c6bc16ecaca8fc553dac90d7d50b5c81c7b7e15",
+      "size": 22572936,
+      "sha256": "5afbe1a7763196db8855a7e5bc94298d3f18bfde7bb70c7d5324bfc414dfb8e8",
       "parts": [
         {
           "file": "tv.apk.xz.part-000",
           "size": 737280,
-          "sha256": "1c71a3d44924a77a3b3ec7e522a9e54509827257c5fd4565a115d3d59cfdfe99"
+          "sha256": "bb81a37b8dde01f9a3a03dc5ee46d9db346ee8cae164a6b57a799a3ff639adee"
         },
         {
           "file": "tv.apk.xz.part-001",
           "size": 737280,
-          "sha256": "4e50ae7619b0478a8fc032533bdb2842a97b35bb94dfaff7d14976eab4c01313"
+          "sha256": "9b430df16b85c7f775f7d8ac2e4da0d8fa112ee3580ab9a06b8094d006199bfa"
         },
         {
           "file": "tv.apk.xz.part-002",
           "size": 737280,
-          "sha256": "127ad9c943109face4348a9b6cf9c27416e9614d7d0342a96a36c3e20b745e0b"
+          "sha256": "7b79e5defa57ee4bc88528c16c1e177749e5add36a8c1b2412e830d065229458"
         },
         {
           "file": "tv.apk.xz.part-003",
           "size": 737280,
-          "sha256": "ffab95967425b71c19c9373779dfc1d66644dd4da4103068989e3563c46b36b4"
+          "sha256": "5d156f3fd6f389ea4c8b4805357f1f557ffab2ed1ee0dae4e11e38773d3caa58"
         },
         {
           "file": "tv.apk.xz.part-004",
           "size": 737280,
-          "sha256": "2d24540bd8ab1a6317b3f6f2e4365869394c6363ebaee0a4692cd79d7c851ba3"
+          "sha256": "68a1271169dbe3e28eb150292ae3c85cef996e989235e1a1e07cd1ff60390096"
         },
         {
           "file": "tv.apk.xz.part-005",
           "size": 737280,
-          "sha256": "606e8502bed6bcc02a29c704da3a7de518b4cabb1830ae8ed25349bec5c9c518"
+          "sha256": "270f0ec0eea46bfd15d9b051104f11f6158afe392a8e308f1b6974bfe7d0aeae"
         },
         {
           "file": "tv.apk.xz.part-006",
           "size": 737280,
-          "sha256": "e969e9a3f8366f74edc1bafb8d3df524da879b23b0d691376fc7aa26ab9fed59"
+          "sha256": "de9f33022b2d429ba12d9f99b5bfc87ad111f9ea6a6372ce9fa760690e8c76d9"
         },
         {
           "file": "tv.apk.xz.part-007",
           "size": 737280,
-          "sha256": "e66f37597c655b375269f33c788c2410d876f336d3943ee35fc2d22c483f68cc"
+          "sha256": "b9a8dfe83a37bde3d37a3fc7baf35d3f5d40b27b1043130c201102ac282212ae"
         },
         {
           "file": "tv.apk.xz.part-008",
           "size": 737280,
-          "sha256": "7f95bcc69d5f05b5aac21d703c079d39e28474bf608f35cefc080868a17d0f01"
+          "sha256": "12f5c1a3f87c6b66188063c2221ce28a39a44be1004ea695d33788ffc173d63c"
         },
         {
           "file": "tv.apk.xz.part-009",
           "size": 737280,
-          "sha256": "9b56e0ff0bd353b71bf421074d8849aab989927aea447fce407c05ea17a87a8c"
+          "sha256": "c8f57283e116d8699c4cb28b0e3a608f66632202f1e60c8b48eaf55e9343cf69"
         },
         {
           "file": "tv.apk.xz.part-010",
           "size": 737280,
-          "sha256": "681eb9ca04e8b90aed7efd39afedff4d589fe7987edc0e633a25ddf2c672c2f4"
+          "sha256": "9feb7b1b7d9b995c1fe552b3ad70eb1e69aec30528499cee3df5f56dda9cd733"
         },
         {
           "file": "tv.apk.xz.part-011",
           "size": 737280,
-          "sha256": "666d90128194f27879ad823ef58c59d3937ea1bc845608689cfe85f4ece2f3fb"
+          "sha256": "52db00b3ce52d2f47d8afb5d80bb779638e47dd1fc14cd7cb3e4a22f429e69c2"
         },
         {
           "file": "tv.apk.xz.part-012",
           "size": 737280,
-          "sha256": "65885166501c8346426f36bedaa6fa91c848e044cf9f8df0dbf1292f2cc79469"
+          "sha256": "fab6d5e820b92d1351f27a10f065ffec07f9aee068fe96068a406ea27d22de0d"
         },
         {
           "file": "tv.apk.xz.part-013",
           "size": 737280,
-          "sha256": "38db1b6ab9507bcabe4e255ac9a389f19042444ec560e1ce00c7f5b084c964fe"
+          "sha256": "1c85adb4aa4fc6fe2226cd6c2a5bbe9fda45f467d4301d84cbc8816f7e92ea50"
         },
         {
           "file": "tv.apk.xz.part-014",
           "size": 737280,
-          "sha256": "cdbcc729b60a3aa124b0a59ae6f080a643c5fb6c8f713987828d52a7cdbb4bfa"
+          "sha256": "138633e34022d73835f4b0521a1bb878f56c3f59f5981704547bd3bcc5a1a66b"
         },
         {
           "file": "tv.apk.xz.part-015",
           "size": 737280,
-          "sha256": "18432cca38b4232b4b315a89762c87b987d12253fbcb5c6e1d6a3ca7155a22c1"
+          "sha256": "49b9c6bf985fda784289d2499cc5ec6566a92f5d5cf2540b701925ecc358cbbc"
         },
         {
           "file": "tv.apk.xz.part-016",
           "size": 737280,
-          "sha256": "3cd49900c4d6f4551085cb47fdcdbafc11f973d6e49c9a0693456fa3e722c179"
+          "sha256": "31326f1c68bd90b5e3b64fc3f3d1dfe91e7e70102239f3217dca380706ffbf79"
         },
         {
           "file": "tv.apk.xz.part-017",
           "size": 737280,
-          "sha256": "4e95871a7ed4e9cb95e1e1d1fe85663a078a2c30905345ba90760989ef038389"
+          "sha256": "1dd164fc0531ba2d356178038ed05105758f27857551f6d464a7e5ca6998fe32"
         },
         {
           "file": "tv.apk.xz.part-018",
           "size": 737280,
-          "sha256": "4cf26339f90d751c32c9c9af01e3236fe4d8262d33e313c17e08406c5f02cd56"
+          "sha256": "c417962d2990a15a5830526d2473b2115e0e3dc98b2e3c92e9d6437f4217fe14"
         },
         {
           "file": "tv.apk.xz.part-019",
           "size": 737280,
-          "sha256": "4b3a43a250399ed04d075fa0e2b3dd5bba59c9ee8600ba2dbc7a892699817e1f"
+          "sha256": "0c5fcef7c1e631e54a7bfc7b6d317ce8fafc63ed8ced79b432d17f694f8a96e5"
         },
         {
           "file": "tv.apk.xz.part-020",
           "size": 737280,
-          "sha256": "eda7232ba830519426e98718e860eddd5f0987b336b760615b458add070c707a"
+          "sha256": "06e3c8c4ec59c81e2c290ec6e3905cd6cb37b2b97a0a8452f1ec955978a9fea9"
         },
         {
           "file": "tv.apk.xz.part-021",
           "size": 737280,
-          "sha256": "5346e1a4554a42257dc8076917c301264223b71a5db9051ee54b999e41ca3666"
+          "sha256": "e611ed0f9eee35c1ed9b40491bd1710b5d39d6feae87aa2daff92e55059a8216"
         },
         {
           "file": "tv.apk.xz.part-022",
           "size": 737280,
-          "sha256": "7987d90f7f05a70f19a81214b58099470d500182008d8bdd370c8f9304785190"
+          "sha256": "1640b9aa3f79b089e29ee708a404aee9e884ee1e1552733f551555f0d40177c5"
         },
         {
           "file": "tv.apk.xz.part-023",
           "size": 737280,
-          "sha256": "007d010c89f5837a9838b822a8df1fe92c7bce4ab463ab476e466aa30183ee0b"
+          "sha256": "317ecfc11b98fb733578f5befb616eaf34f33905e86e947b2628bc2a156186af"
         },
         {
           "file": "tv.apk.xz.part-024",
           "size": 737280,
-          "sha256": "b2f465cc76d1d16daa379f726c44ae9430bc6f471d9a63bb5121471b422d3da6"
+          "sha256": "625fd63b581affe78965c8509e343be90a96b0faaf01acf1b4869292a005e2de"
         },
         {
           "file": "tv.apk.xz.part-025",
           "size": 737280,
-          "sha256": "ce626d687feb23a60342341c850655308471d3de13dfe7971b4ad7dacd3fc1c6"
+          "sha256": "b1f3afd75b7a099461d5ac1ded29f935f05665051cd143cb4ad3675028561b4f"
         },
         {
           "file": "tv.apk.xz.part-026",
           "size": 737280,
-          "sha256": "5fad7e5be367f807248969eeab3d6d61532df4f45625b9189daa00604e280922"
+          "sha256": "de6ce1a51e4edc5e90e69761c9c4da08239f60ede987affa936761b5c1025f84"
         },
         {
           "file": "tv.apk.xz.part-027",
           "size": 737280,
-          "sha256": "a27af4c1139ac8dcda2af3403610291b4037755a0e5c0310d295c593b5404022"
+          "sha256": "b42890928aaf30c549992b01141f86dfeee8309127f3be4ffcf3f8f2dd87c9d8"
         },
         {
           "file": "tv.apk.xz.part-028",
           "size": 737280,
-          "sha256": "c1fabfc981a9aeeed0988eba9b23eb78b08c63219f7c074a83b71abd7fdd920b"
+          "sha256": "167f04cd3730bee50445ef307787bd7cd1df7d49530cf2e096f21c302c106a79"
         },
         {
           "file": "tv.apk.xz.part-029",
           "size": 737280,
-          "sha256": "023681fad152fce1576fb5b4677219822121e08f344e16daac62f69dd11d8b78"
+          "sha256": "c64e986b9c5ff0453d5e1f64efc613d6ec5360f08f29b4f5b0638d89df5a6d77"
         },
         {
           "file": "tv.apk.xz.part-030",
-          "size": 461408,
-          "sha256": "c9505950b9c6df1f8ff553e5649be24ce716b7613f66d8177e824484c4221521"
+          "size": 454536,
+          "sha256": "e984096fb81d90f1b41796c765be33b305ea416164672615f414dc4fd556c07d"
         }
       ]
     }
